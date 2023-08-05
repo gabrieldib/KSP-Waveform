@@ -1,0 +1,66 @@
+// Global Variables ------------------------------------------------------------------------------------------- 
+    declare $a.i := 0
+    declare $b.i := 0
+    declare $c.i := 0
+    declare $d.i := 0
+    declare $e.i := 0
+    declare $f.i := 0
+    declare $g.i := 0
+    declare $h.i := 0
+    declare $i.i := 0
+    declare $j.i := 0
+    declare $k.i := 0
+    declare $l.i := 0
+    declare $m.i := 0
+    declare $n.i := 0
+    declare $o.i := 0
+    declare $p.i := 0
+    declare $q.i := 0
+    declare $r.i := 0
+    declare $s.i := 0
+    declare $t.i := 0
+    declare $u.i := 0
+    declare $v.i := 0
+    declare $w.i := 0
+    declare $x.i := 0
+    declare $y.i := 0
+    declare $z.i := 0
+
+    declare ~a.r := 0.0
+    declare ~b.r := 0.0
+    declare ~c.r := 0.0
+    declare ~d.r := 0.0
+    declare ~e.r := 0.0
+    declare ~f.r := 0.0
+    declare ~g.r := 0.0
+    declare ~h.r := 0.0
+    declare ~i.r := 0.0
+    declare ~j.r := 0.0
+    declare ~k.r := 0.0
+    declare ~l.r := 0.0
+    declare ~m.r := 0.0
+    declare ~n.r := 0.0
+    declare ~o.r := 0.0
+    declare ~p.r := 0.0
+    declare ~q.r := 0.0
+    declare ~r.r := 0.0
+    declare ~s.r := 0.0
+    declare ~t.r := 0.0
+    declare ~u.r := 0.0
+    declare ~v.r := 0.0
+    declare ~w.r := 0.0
+    declare ~x.r := 0.0
+    declare ~y.r := 0.0
+    declare ~z.r := 0.0
+
+    macro play_note_dummy(#n#)
+        declare play_note_dummy#n# := 0
+    end macro
+    iterate_macro(play_note_dummy) := 1 to PLAY_NOTE_DUMMY
+    declare %asyncid[10000] := (0)
+
+// Debug Variables -------------------------------------------------------------------------------------------- 
+    declare uptimeBuffer := 0
+    declare !debugMultistageMessageText[100]    := ("")
+    declare %debugMultistageMessageNumber[100]  := (-1)
+    declare @debugStringBuffer := ""    

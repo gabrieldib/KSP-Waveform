@@ -1,0 +1,146 @@
+{ Compiled on Sat Aug  5 14:16:15 2023 }
+on init
+  declare $sksp_dummy
+  declare $concat_it
+  declare $concat_offset
+  declare $string_it
+  declare $list_it
+  declare $preproc_i
+  message("")
+  make_perfview
+  set_script_title("Script Title")
+  set_ui_width_px(969)
+  set_ui_height_px(520)
+  set_ui_color(2894892)
+  set_control_par_str($INST_ICON_ID,$CONTROL_PAR_PICTURE,"icon")
+  set_control_par($INST_ICON_ID,$CONTROL_PAR_HIDE,$HIDE_WHOLE_CONTROL)
+  set_control_par_str($INST_WALLPAPER_ID,$CONTROL_PAR_PICTURE,"UI_Background")
+  set_listener($NI_SIGNAL_TIMER_BEAT,24)
+  set_listener($NI_SIGNAL_TIMER_MS,1000)
+  declare $a__i := 0
+  declare $b__i := 0
+  declare $c__i := 0
+  declare $d__i := 0
+  declare $e__i := 0
+  declare $f__i := 0
+  declare $g__i := 0
+  declare $h__i := 0
+  declare $i__i := 0
+  declare $j__i := 0
+  declare $k__i := 0
+  declare $l__i := 0
+  declare $m__i := 0
+  declare $n__i := 0
+  declare $o__i := 0
+  declare $p__i := 0
+  declare $q__i := 0
+  declare $r__i := 0
+  declare $s__i := 0
+  declare $t__i := 0
+  declare $u__i := 0
+  declare $v__i := 0
+  declare $w__i := 0
+  declare $x__i := 0
+  declare $y__i := 0
+  declare $z__i := 0
+  declare ~a__r := 0.0
+  declare ~b__r := 0.0
+  declare ~c__r := 0.0
+  declare ~d__r := 0.0
+  declare ~e__r := 0.0
+  declare ~f__r := 0.0
+  declare ~g__r := 0.0
+  declare ~h__r := 0.0
+  declare ~i__r := 0.0
+  declare ~j__r := 0.0
+  declare ~k__r := 0.0
+  declare ~l__r := 0.0
+  declare ~m__r := 0.0
+  declare ~n__r := 0.0
+  declare ~o__r := 0.0
+  declare ~p__r := 0.0
+  declare ~q__r := 0.0
+  declare ~r__r := 0.0
+  declare ~s__r := 0.0
+  declare ~t__r := 0.0
+  declare ~u__r := 0.0
+  declare ~v__r := 0.0
+  declare ~w__r := 0.0
+  declare ~x__r := 0.0
+  declare ~y__r := 0.0
+  declare ~z__r := 0.0
+  declare $play_note_dummy1 := 0
+  declare $play_note_dummy2 := 0
+  declare $play_note_dummy3 := 0
+  declare $play_note_dummy4 := 0
+  declare $play_note_dummy5 := 0
+  declare $play_note_dummy6 := 0
+  declare $play_note_dummy7 := 0
+  declare $play_note_dummy8 := 0
+  declare %asyncid[10000] := (0)
+  declare $uptimeBuffer := 0
+  declare !debugMultistageMessageText[100]
+  $string_it := 0
+  while ($string_it<100)
+    !debugMultistageMessageText[$string_it] := ""
+    inc($string_it)
+  end while
+  declare %debugMultistageMessageNumber[100] := (-1)
+  declare @debugStringBuffer
+  @debugStringBuffer := ""
+  declare $lcb_counter
+  declare ui_waveform $waveform(1,1)
+  set_control_par(get_ui_id($waveform),$CONTROL_PAR_WIDTH,900)
+  set_control_par(get_ui_id($waveform),$CONTROL_PAR_HEIGHT,450)
+  set_control_par(get_ui_id($waveform),$CONTROL_PAR_POS_X,35)
+  set_control_par(get_ui_id($waveform),$CONTROL_PAR_POS_Y,35)
+  hide_part($waveform,$HIDE_PART_BG)
+  attach_zone($waveform,find_zone("waveform"),0)
+  declare $wf_play_pos
+  declare %event_ids[128]
+  declare $note_count
+end on
+
+on persistence_changed
+  message("KSP-Waveform loaded successfully")
+end on
+
+on async_complete
+  if ($NI_ASYNC_ID=0)
+    message("If statements can't be empty, so I exist.")
+  end if
+end on
+
+on controller
+end on
+
+on note
+  set_event_par($EVENT_ID,$EVENT_PAR_0,1)
+  inc($note_count)
+  ignore_event($EVENT_ID)
+  %event_ids[$EVENT_NOTE] := play_note($EVENT_NOTE,$EVENT_VELOCITY,0,-1)
+end on
+
+on release
+  if (get_event_par($EVENT_ID,$EVENT_PAR_0)=1)
+    dec($note_count)
+    %event_ids[$EVENT_NOTE] := 0
+  end if
+end on
+
+on listener
+  if ($NI_SIGNAL_TYPE=$NI_SIGNAL_TIMER_MS and ($note_count>0))
+    $i__i := 0
+    while ($i__i<=127)
+      if (%event_ids[$i__i] # 0)
+        $wf_play_pos := get_event_par(%event_ids[$i__i],$EVENT_PAR_PLAY_POS)
+        set_ui_wf_property($waveform,$UI_WF_PROP_PLAY_CURSOR,0,$wf_play_pos)
+      end if
+      inc($i__i)
+    end while
+  end if
+end on
+
+on poly_at
+end on
+

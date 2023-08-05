@@ -1,0 +1,3 @@
+on persistence_changed
+	message("KSP-Waveform loaded successfully")
+end on

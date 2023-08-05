@@ -1,0 +1,7 @@
+on note
+    set_event_par(EVENT_ID, EVENT_PAR_0, 1)
+    inc(note_count)
+    ignore_event(EVENT_ID)
+    event_ids [ EVENT_NOTE ] := play_note(EVENT_NOTE, EVENT_VELOCITY, 0 ,-1)
+    
+end on

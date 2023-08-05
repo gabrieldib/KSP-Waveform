@@ -1,0 +1,57 @@
+{ #pragma save_compiled_source ../Resources/scripts/SLOT1_MAIN.txt}
+
+import "KSP-Waveform _defines.ksp"
+import "KSP-Waveform macros.ksp"
+
+on init
+    message("")
+    make_perfview
+    set_script_title        (SCRIPT.TITLE)
+    set_ui_width_px         (UI_WIDTH)
+    set_ui_height_px        (UI_HEIGHT)
+    set_ui_color            (UI_COLOR)
+    set_control_par_str     ($INST_ICON_ID,$CONTROL_PAR_PICTURE,UI_ICON)
+    set_control_par         ($INST_ICON_ID,$CONTROL_PAR_HIDE,HIDE_WHOLE_CONTROL)
+    set_control_par_str     ($INST_WALLPAPER_ID,$CONTROL_PAR_PICTURE,UI_BACKGROUND_PNG)
+    set_listener            ($NI_SIGNAL_TIMER_BEAT, LISTENER_BEAT)
+    set_listener            ($NI_SIGNAL_TIMER_MS,   LISTENER_MS)
+
+    import "KSP-Waveform global variables.ksp"
+    import "KSP-Waveform UI figma.ksp"
+    import "KSP-Waveform support variables and controls.ksp"
+
+    declare lcb_counter
+    declare ui_waveform waveform (1,1)
+        waveform -> width     := 900
+        waveform -> height    := 450
+        waveform -> x         := 35
+        waveform -> y         := 35
+        // waveform -> bg_alpha  := 0
+        hide_part(waveform, HIDE_PART_BG)
+        attach_zone(waveform, find_zone("waveform"), 0)
+
+    declare wf_play_pos
+    declare event_ids [ 128 ]
+    declare note_count
+
+end on // –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+
+
+import "KSP-Waveform functions.ksp"
+import "KSP-Waveform cb Persistence Changed.ksp"
+
+import "KSP-Waveform cb Async Complete.ksp"
+import "KSP-Waveform cb Controller.ksp"
+
+import "KSP-Waveform UI controls.ksp"
+import "KSP-Waveform UI controls effects.ksp"
+
+import "KSP-Waveform cb Note.ksp"
+import "KSP-Waveform cb Release.ksp"
+import "KSP-Waveform cb Listener.ksp"
+import "KSP-Waveform cb Poly_AT.ksp"
+
+
+

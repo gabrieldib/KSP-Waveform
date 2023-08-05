@@ -1,0 +1,12 @@
+on listener
+    if ( NI_SIGNAL_TYPE = NI_SIGNAL_TIMER_MS )
+        if (lcb_counter mod 40000 = 0 and note_count > 0)
+          for i.i := 0 to 127
+              if (event_ids[i.i] # 0)
+                  wf_play_pos := get_event_par(event_ids[i.i], EVENT_PAR_PLAY_POS)
+                  set_ui_wf_property(waveform, $UI_WF_PROP_PLAY_CURSOR, 0, wf_play_pos)
+              end if
+          end for
+        end if
+    end if
+end on
